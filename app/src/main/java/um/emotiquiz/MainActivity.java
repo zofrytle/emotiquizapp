@@ -121,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
 //                            FirebaseApp.initializeApp(this);
                             reference = FirebaseDatabase.getInstance().getReference();
 
+                            reference.child("users").child(user.getUid()).child("email").setValue(user.getEmail());
                             reference.child("users").child(user.getUid()).child("metadata").setValue(user.getMetadata());
                             reference.child("users").child(user.getUid()).child("name").setValue(user.getDisplayName());
                             reference.child("users").child(user.getUid()).child("provider").setValue(user.getProviders());
-                            reference.child("users").child(user.getUid()).child("email").setValue(user.getEmail());
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -184,42 +184,3 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 }
-
-//        List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.GoogleBuilder().build());
-//
-//        startActivityForResult(
-//                AuthUI.getInstance()
-//                        .createSignInIntentBuilder()
-//                        .setAvailableProviders(providers)
-//                        .build(),
-//                123);
-//    }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == 123) {
-//            IdpResponse response = IdpResponse.fromResultIntent(data);
-//
-//            if (resultCode == RESULT_OK) {
-//                // Successfully signed in
-//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//                FirebaseApp.initializeApp(this);
-//                reference = FirebaseDatabase.getInstance().getReference();
-//
-//                reference.child("users").child(user.getUid()).child("metadata").setValue(user.getMetadata());
-//                reference.child("users").child(user.getUid()).child("name").setValue(user.getDisplayName());
-//                reference.child("users").child(user.getUid()).child("provider").setValue(user.getProviders());
-//                reference.child("users").child(user.getUid()).child("email").setValue(user.getEmail());
-//
-//            } else {
-//                // Sign in failed. If response is null the user canceled the
-//                // sign-in flow using the back button. Otherwise check
-//                 response.getError().getErrorCode();// and handle the error.
-//                // ...
-//            }
-//        }
-//    }
-//}
